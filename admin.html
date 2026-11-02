@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin | Tobitoys</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <div>
+        <!-- Header Superior -->
+        <header class="border-b border-slate-200 bg-white py-4 px-6 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="productos.html" class="text-2xl font-black tracking-tight text-blue-600 uppercase">
+                    Tobi<span class="text-orange-500">toys</span> <span class="text-xs text-slate-400 font-normal ml-2">| Admin</span>
+                </a>
+                <nav class="flex items-center space-x-4 text-sm font-semibold">
+                    <a href="productos.html" class="text-slate-600 hover:text-blue-600 transition"><i class="fa-solid fa-arrow-left mr-1"></i> Ver Catálogo</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- SECCIÓN DE LOGIN DE ADMIN -->
+        <div id="login-section" class="max-w-md mx-auto px-4 py-20">
+            <div class="bg-white border border-slate-200 rounded-lg p-8 shadow-sm text-center">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-lg mx-auto mb-4">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900 mb-1">Acceso de Administrador</h2>
+                <p class="text-slate-500 text-xs mb-6">Ingresá tus credenciales para gestionar los productos.</p>
+                
+                <form onsubmit="checkAccess(event)" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Correo Electrónico</label>
+                        <input type="email" id="admin-email" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="admin@tobitoys.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Contraseña</label>
+                        <input type="password" id="admin-pass" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-md text-xs uppercase tracking-wider transition">
+                        Ingresar al Panel
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PANEL DE ADMINISTRACIÓN -->
+        <main id="admin-panel" class="max-w-3xl mx-auto px-4 py-10 hidden">
+            
+            <div class="flex justify-between items-center mb-6 bg-slate-50 border border-slate-200 p-4 rounded-lg">
+                <span class="text-xs font-semibold text-slate-600">Usuario: <span id="logged-email" class="text-blue-600 font-bold"></span></span>
+                <button onclick="logoutAdmin()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded text-xs font-semibold transition">
+                    Cerrar Sesión
+                </button>
+            </div>
+
+            <!-- FORMULARIO DE CARGA DE PRODUCTOS -->
+            <div class="bg-white border border-slate-200 rounded-lg p-6 sm:p-8 shadow-sm mb-6">
+                <h2 class="text-lg font-bold text-slate-900 mb-6 flex items-center">
+                    <i class="fa-solid fa-cloud-arrow-up text-blue-600 mr-2"></i> Subir Nuevo Producto
+                </h2>
+
+                <form id="product-form" onsubmit="saveProduct(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nombre del Producto</label>
+                        <input type="text" id="p-name" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="Ej: Mochila Carro 12''">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Marca / Proveedor</label>
+                            <select id="p-brand" class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500 bg-white">
+                                <!-- Dinámico -->
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Subcategoría / Línea</label>
+                            <input type="text" id="p-subcat" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="Ej: Mochilas Chimola">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Código</label>
+                            <input type="text" id="p-code" class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="Ej: 305BT407">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Precio ($)</label>
+                            <input type="number" id="p-price" min="0" value="15000" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="49901">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Stock</label>
+                            <input type="number" id="p-stock" min="0" value="10" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="10">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Descripción corta</label>
+                            <input type="text" id="p-desc" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="Ej: Con carro y tiras">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Seleccionar Foto</label>
+                            <input type="file" id="p-image-file" accept="image/*" required class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2.5 rounded-md text-xs uppercase tracking-wider transition">
+                        Publicar Producto
+                    </button>
+                </form>
+            </div>
+
+            <!-- GESTIÓN DE MARCAS -->
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-6 mb-6 shadow-sm">
+                <h3 class="text-sm font-bold text-slate-900 mb-2 flex items-center">
+                    <i class="fa-solid fa-tags text-blue-600 mr-2"></i> Agregar Nueva Marca / Proveedor
+                </h3>
+                <form onsubmit="saveBrand(event)" class="flex gap-3 mt-3">
+                    <input type="text" id="new-brand-name" required class="flex-1 px-3 py-2 border border-slate-300 rounded-md text-xs outline-none bg-white font-medium" placeholder="Ej: Chimola / Arbrex">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-md text-xs uppercase tracking-wider transition shadow-sm">
+                        Crear Marca
+                    </button>
+                </form>
+            </div>
+
+            <!-- ACTUALIZACIÓN MASIVA POR MARCA -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8 shadow-sm">
+                <h3 class="text-base font-bold text-blue-900 mb-2 flex items-center">
+                    <i class="fa-solid fa-percent text-blue-600 mr-2"></i> Actualización Masiva de Precios por Marca
+                </h3>
+                <p class="text-xs text-blue-700 mb-4">Aplicá un porcentaje de aumento (ej: 15) o descuento (ej: -10) a toda una marca de golpe.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase text-blue-900 mb-1">Seleccionar Marca</label>
+                        <select id="bulk-brand" class="w-full px-3 py-2 border border-blue-300 rounded-md text-xs outline-none bg-white font-medium">
+                            <!-- Dinámico -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase text-blue-900 mb-1">Porcentaje (+ o -)</label>
+                        <input type="number" id="bulk-percent" step="0.1" value="10" class="w-full px-3 py-2 border border-blue-300 rounded-md text-xs outline-none bg-white font-bold" placeholder="Ej: 15">
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="applyBulkUpdate()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-md text-xs uppercase tracking-wider transition shadow-sm">
+                            Aplicar Cambios
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de productos -->
+            <div class="bg-white border border-slate-200 rounded-lg p-6 sm:p-8 shadow-sm">
+                <h3 class="text-lg font-bold text-slate-900 mb-4">Gestión de Productos y Precios</h3>
+                <div id="admin-products-list" class="space-y-3">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="bg-slate-100 text-slate-500 py-6 text-center text-xs border-t border-slate-200 mt-20">
+        <p>&copy; 2026 Tobitoys. Panel de Administración.</p>
+    </footer>
+
+    <script>
+        const AUTHORIZED_EMAIL = "admin@tobitoys.com";
+        const AUTHORIZED_PASS = "Rodrigo2026";
+
+        window.onload = function() {
+            const savedEmail = localStorage.getItem('admin_logged_email');
+            if (savedEmail === AUTHORIZED_EMAIL) {
+                showAdminPanel(savedEmail);
+            }
+        };
+
+        function checkAccess(event) {
+            event.preventDefault();
+            const inputEmail = document.getElementById('admin-email').value.trim().toLowerCase();
+            const inputPass = document.getElementById('admin-pass').value.trim();
+
+            if (inputEmail === AUTHORIZED_EMAIL.toLowerCase() && inputPass === AUTHORIZED_PASS) {
+                localStorage.setItem('admin_logged_email', inputEmail);
+                showAdminPanel(inputEmail);
+            } else {
+                alert("❌ Correo o contraseña incorrectos.");
+            }
+        }
+
+        function showAdminPanel(email) {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('admin-panel').classList.remove('hidden');
+            document.getElementById('logged-email').textContent = email;
+            renderBrandsDropdowns();
+            renderAdminList();
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('admin_logged_email');
+            location.reload();
+        }
+
+        let brands = JSON.parse(localStorage.getItem('tobitoys_brands')) || [
+            { id: 'chimola', name: 'Chimola' },
+            { id: 'arbrex', name: 'Arbrex' },
+            { id: 'argos', name: 'Argos' },
+            { id: 'surtidos', name: 'Artículos Surtidos' }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('tobitoys_products')) || [
+            { id: 1, name: "MOCHILA CARRO 12'' CARS", brand: "chimola", subcat: "Mochilas", code: "305BT407", desc: "Línea Mochilas Chimola", price: 49901, stock: 15, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+            { id: 2, name: "MOCHILA CARRO 12'' CAT", brand: "chimola", subcat: "Mochilas", code: "305BT367", desc: "Línea Mochilas Chimola", price: 49901, stock: 8, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80" },
+            { id: 3, name: "CUADERNO TAPA DURA 100 HOJAS", brand: "arbrex", subcat: "Librería", code: "LIB-001", desc: "Rayado / Universitarios", price: 8500, stock: 30, image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&q=80" },
+            { id: 4, name: "SET DE JUGUETES DIDÁCTICOS", brand: "argos", subcat: "Juguetes", code: "JUG-882", desc: "Estimulación temprana", price: 15400, stock: 5, image: "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=400&q=80" }
+        ];
+
+        function renderBrandsDropdowns() {
+            const selects = [document.getElementById('p-brand'), document.getElementById('bulk-brand')];
+            selects.forEach(select => {
+                select.innerHTML = '';
+                brands.forEach(b => {
+                    select.innerHTML += `<option value="${b.id}">${b.name}</option>`;
+                });
+            });
+        }
+
+        function saveBrand(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('new-brand-name');
+            const name = nameInput.value.trim();
+            const id = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+
+            if (brands.some(b => b.id === id)) {
+                alert("❌ Esta marca ya existe.");
+                return;
+            }
+
+            brands.push({ id, name });
+            localStorage.setItem('tobitoys_brands', JSON.stringify(brands));
+            alert(`¡Marca "${name}" creada con éxito!`);
+            nameInput.value = '';
+            renderBrandsDropdowns();
+        }
+
+        function saveProduct(event) {
+            event.preventDefault();
+            const name = document.getElementById('p-name').value;
+            const brand = document.getElementById('p-brand').value;
+            const subcat = document.getElementById('p-subcat').value;
+            const code = document.getElementById('p-code').value;
+            const price = parseFloat(document.getElementById('p-price').value) || 0;
+            const stock = parseInt(document.getElementById('p-stock').value) || 0;
+            const desc = document.getElementById('p-desc').value;
+            const fileInput = document.getElementById('p-image-file');
+
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newProduct = {
+                        id: Date.now(),
+                        name,
+                        brand,
+                        subcat,
+                        code,
+                        price,
+                        stock,
+                        desc,
+                        image: e.target.result
+                    };
+                    products.push(newProduct);
+                    localStorage.setItem('tobitoys_products', JSON.stringify(products));
+                    alert('¡Producto agregado con éxito!');
+                    document.getElementById('product-form').reset();
+                    renderAdminList();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function updateProductData(id, field, value) {
+            const product = products.find(p => p.id === id);
+            if (product) {
+                if (field === 'stock') product.stock = Math.max(0, parseInt(value) || 0);
+                if (field === 'price') product.price = Math.max(0, parseFloat(value) || 0);
+                localStorage.setItem('tobitoys_products', JSON.stringify(products));
+            }
+        }
+
+        function applyBulkUpdate() {
+            const brand = document.getElementById('bulk-brand').value;
+            const percent = parseFloat(document.getElementById('bulk-percent').value);
+
+            if (isNaN(percent)) {
+                alert("Por favor, ingresá un porcentaje válido.");
+                return;
+            }
+
+            let updatedCount = 0;
+            products.forEach(product => {
+                if (product.brand === brand) {
+                    let currentPrice = product.price !== undefined ? product.price : 15000;
+                    let newPrice = currentPrice * (1 + (percent / 100));
+                    product.price = Math.round(newPrice * 100) / 100;
+                    updatedCount++;
+                }
+            });
+
+            localStorage.setItem('tobitoys_products', JSON.stringify(products));
+            alert(`¡Se actualizaron ${updatedCount} productos con un ${percent}%!`);
+            renderAdminList();
+        }
+
+        function deleteProduct(id) {
+            if (confirm("¿Estás seguro de eliminar este producto?")) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('tobitoys_products', JSON.stringify(products));
+                renderAdminList();
+            }
+        }
+
+        function renderAdminList() {
+            const listContainer = document.getElementById('admin-products-list');
+            listContainer.innerHTML = '';
+            if (products.length === 0) {
+                listContainer.innerHTML = `<p class="text-slate-400 text-xs">No hay productos cargados.</p>`;
+                return;
+            }
+            products.slice().reverse().forEach(product => {
+                const priceVal = product.price !== undefined ? product.price : 15000;
+                const stockVal = product.stock !== undefined ? product.stock : 10;
+                const brandObj = brands.find(b => b.id === product.brand);
+                const brandName = brandObj ? brandObj.name : product.brand;
+
+                listContainer.innerHTML += `
+                    <div class="flex items-center justify-between border border-slate-100 p-3 rounded-md bg-slate-50 gap-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-white border border-slate-200 rounded flex items-center justify-center p-0.5 flex-shrink-0">
+                                <img src="${product.image}" class="w-full h-full object-contain">
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-xs text-slate-800">${product.name}</h5>
+                                <span class="text-[10px] text-slate-500 uppercase">${brandName} (${product.subcat}) | Cod: ${product.code || 'S/C'}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div>
+                                <label class="block text-[9px] uppercase font-bold text-slate-500">Precio ($)</label>
+                                <input type="number" min="0" value="${priceVal}" onchange="updateProductData(${product.id}, 'price', this.value)" class="w-20 px-2 py-1 border border-slate-300 rounded text-xs font-bold text-center bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-[9px] uppercase font-bold text-slate-500">Stock</label>
+                                <input type="number" min="0" value="${stockVal}" onchange="updateProductData(${product.id}, 'stock', this.value)" class="w-16 px-2 py-1 border border-slate-300 rounded text-xs font-bold text-center bg-white">
+                            </div>
+                            <button onclick="deleteProduct(${product.id})" class="mt-4 bg-red-500 hover:bg-red-600 text-white px-2.5 py-1.5 rounded text-xs transition">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>

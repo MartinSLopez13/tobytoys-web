@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta | Tobitoys</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <div>
+        <!-- Header Superior -->
+        <header class="border-b border-slate-200 bg-white py-4 px-6 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="productos.html" class="text-2xl font-black tracking-tight text-blue-600 uppercase">
+                    Tobi<span class="text-orange-500">toys</span>
+                </a>
+                <nav class="flex items-center space-x-4 text-sm font-semibold">
+                    <a href="productos.html" class="text-slate-600 hover:text-blue-600 transition">Catálogo</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Contenedor Principal -->
+        <main class="max-w-3xl mx-auto px-4 py-12">
+            
+            <!-- VISTA DE LOGIN -->
+            <div id="login-card" class="max-w-md mx-auto bg-white border border-slate-200 rounded-lg p-8 shadow-sm">
+                <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-lg mx-auto mb-4">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900 text-center mb-1">Ingresar a Tobitoys</h2>
+                <p class="text-slate-500 text-xs text-center mb-6">Iniciá sesión para ver tus pedidos anteriores.</p>
+                
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Correo Electrónico</label>
+                        <input type="email" id="login-email" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="tu@correo.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Contraseña</label>
+                        <input type="password" id="login-pass" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-md text-xs uppercase tracking-wider transition">
+                        Iniciar Sesión
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center text-xs text-slate-500">
+                    ¿No tenés cuenta? <button onclick="toggleView()" class="text-blue-600 font-semibold hover:underline">Registrate</button>
+                </div>
+            </div>
+
+            <!-- VISTA DE REGISTRO -->
+            <div id="register-card" class="max-w-md mx-auto bg-white border border-slate-200 rounded-lg p-8 shadow-sm hidden">
+                <div class="w-12 h-12 bg-orange-50 text-orange-500 rounded-full flex items-center justify-center text-lg mx-auto mb-4">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900 text-center mb-1">Crear Cuenta</h2>
+                <p class="text-slate-500 text-xs text-center mb-6">Registrate para guardar tu historial.</p>
+                
+                <form onsubmit="handleRegister(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Nombre / Comercio</label>
+                        <input type="text" id="reg-name" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="Librería El Sol">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Correo Electrónico</label>
+                        <input type="email" id="reg-email" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="tu@correo.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Contraseña</label>
+                        <input type="password" id="reg-pass" required class="w-full px-3 py-2 border border-slate-300 rounded-md text-sm outline-none focus:border-blue-500" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2.5 rounded-md text-xs uppercase tracking-wider transition">
+                        Registrarse
+                    </button>
+                </form>
+
+                <div class="mt-6 text-center text-xs text-slate-500">
+                    ¿Ya tenés cuenta? <button onclick="toggleView()" class="text-blue-600 font-semibold hover:underline">Iniciá sesión</button>
+                </div>
+            </div>
+
+            <!-- VISTA DE PERFIL Y HISTORIAL DE PEDIDOS -->
+            <div id="user-profile" class="space-y-6 hidden">
+                <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold text-slate-400">Comercio Conectado</span>
+                        <h2 id="profile-name" class="text-lg font-bold text-slate-900"></h2>
+                        <p id="profile-email" class="text-slate-500 text-xs"></p>
+                    </div>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <a href="productos.html" class="flex-1 sm:flex-none text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded text-xs transition">
+                            Ir al Catálogo
+                        </a>
+                        <button onclick="logoutUser()" class="flex-1 sm:flex-none bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded text-xs transition">
+                            Cerrar Sesión
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Historial -->
+                <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+                    <h3 class="text-base font-bold text-slate-900 mb-4 flex items-center">
+                        <i class="fa-solid fa-clock-rotate-left text-blue-600 mr-2"></i> Mis Pedidos Anteriores
+                    </h3>
+                    <div id="orders-history" class="space-y-4">
+                        <!-- Dinámico -->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-100 text-slate-500 py-6 text-center text-xs border-t border-slate-200 mt-20">
+        <p>&copy; 2026 Tobitoys. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        window.onload = function() {
+            const activeUser = JSON.parse(localStorage.getItem('tobitoys_client_user'));
+            if (activeUser) {
+                showProfile(activeUser);
+            }
+        };
+
+        function toggleView() {
+            document.getElementById('login-card').classList.toggle('hidden');
+            document.getElementById('register-card').classList.toggle('hidden');
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim().toLowerCase();
+            const pass = document.getElementById('reg-pass').value.trim();
+
+            let users = JSON.parse(localStorage.getItem('tobitoys_clients')) || [];
+            if (users.find(u => u.email === email)) {
+                alert("❌ Este correo ya está registrado.");
+                return;
+            }
+
+            const newUser = { name, email, pass, orders: [] };
+            users.push(newUser);
+            localStorage.setItem('tobitoys_clients', JSON.stringify(users));
+            localStorage.setItem('tobitoys_client_user', JSON.stringify(newUser));
+            showProfile(newUser);
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value.trim().toLowerCase();
+            const pass = document.getElementById('login-pass').value.trim();
+
+            let users = JSON.parse(localStorage.getItem('tobitoys_clients')) || [];
+            const user = users.find(u => u.email === email && u.pass === pass);
+
+            if (user) {
+                localStorage.setItem('tobitoys_client_user', JSON.stringify(user));
+                showProfile(user);
+            } else {
+                alert("❌ Correo o contraseña incorrectos.");
+            }
+        }
+
+        function showProfile(user) {
+            document.getElementById('login-card').classList.add('hidden');
+            document.getElementById('register-card').classList.add('hidden');
+            document.getElementById('user-profile').classList.remove('hidden');
+            document.getElementById('profile-name').textContent = user.name;
+            document.getElementById('profile-email').textContent = user.email;
+
+            renderOrdersHistory(user);
+        }
+
+        function renderOrdersHistory(user) {
+            const container = document.getElementById('orders-history');
+            container.innerHTML = '';
+
+            if (!user.orders || user.orders.length === 0) {
+                container.innerHTML = `<p class="text-slate-400 text-xs py-4 text-center">No registrás pedidos anteriores en este dispositivo.</p>`;
+                return;
+            }
+
+            user.orders.slice().reverse().forEach((order, index) => {
+                let itemsList = '';
+                order.items.forEach(item => {
+                    itemsList += `<li class="text-slate-600">• ${item.name} (Cant: ${item.quantity}) - $${(item.price * item.quantity).toLocaleString()}</li>`;
+                });
+
+                container.innerHTML += `
+                    <div class="border border-slate-200 rounded-md p-4 bg-slate-50 text-xs space-y-2">
+                        <div class="flex justify-between font-bold text-slate-800 border-b border-slate-200 pb-2">
+                            <span>📅 Fecha: ${order.date}</span>
+                            <span class="text-blue-600">Total: $${order.total.toLocaleString()}</span>
+                        </div>
+                        <ul class="space-y-1 pl-2">
+                            ${itemsList}
+                        </ul>
+                        <div class="text-right pt-1">
+                            <button onclick="repeatOrder(${index})" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded font-semibold transition">
+                                <i class="fa-solid fa-rotate-right mr-1"></i> Repetir Pedido
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function repeatOrder(orderIndex) {
+            const user = JSON.parse(localStorage.getItem('tobitoys_client_user'));
+            const actualOrderIndex = user.orders.length - 1 - orderIndex;
+            const orderToRepeat = user.orders[actualOrderIndex];
+
+            // Guardar en el carrito general para pasarlo al catálogo
+            localStorage.setItem('tobitoys_cart_to_repeat', JSON.stringify(orderToRepeat.items));
+            window.location.href = 'productos.html';
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('tobitoys_client_user');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
