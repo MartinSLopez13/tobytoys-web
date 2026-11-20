@@ -150,9 +150,7 @@
                     <h2 class="text-base font-black text-slate-900 uppercase tracking-wide">Marcas en el Catálogo</h2>
                     <span class="text-xs text-slate-400">Actualizadas automáticamente</span>
                 </div>
-                <div id="home-brands-list" class="flex flex-wrap gap-2.5">
-                    <!-- Dinámico -->
-                </div>
+                <div id="home-brands-list" class="flex flex-wrap gap-2.5"></div>
             </div>
         </section>
     </div>
@@ -184,14 +182,18 @@
                 document.getElementById('user-nav-name').textContent = activeUser.name.toUpperCase();
             }
 
-            const brands = JSON.parse(localStorage.getItem('tobitoys_brands')) || [
+            const defaultBrands = [
                 { id: 'chimola', name: 'Chimola' },
                 { id: 'arbrex', name: 'Arbrex' },
                 { id: 'argos', name: 'Argos' },
                 { id: 'surtidos', name: 'Artículos Surtidos' }
             ];
 
+            const storedBrands = JSON.parse(localStorage.getItem('tobitoys_brands'));
+            const brands = (Array.isArray(storedBrands) && storedBrands.length > 0) ? storedBrands : defaultBrands;
+
             const brandsContainer = document.getElementById('home-brands-list');
+            brandsContainer.innerHTML = '';
             brands.forEach(brand => {
                 brandsContainer.innerHTML += `
                     <a href="productos.html" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-700 hover:text-blue-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl transition">
