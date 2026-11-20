@@ -3,92 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | Tobitoys</title>
+    <title>Tobitoys | Distribuidora Mayorista</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-white text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
     <div>
-        <!-- Header Superior Estilo Clásico -->
-        <header class="border-b border-slate-200 bg-white py-4 px-6 sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <!-- Header Superior -->
+        <header class="border-b border-slate-200 bg-white py-3.5 px-6 sticky top-0 z-50 shadow-sm">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
                 
                 <!-- Logo Tobitoys -->
-                <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-black tracking-tight text-blue-600 uppercase">
-                        Tobi<span class="text-orange-500">toys</span>
-                    </a>
-                </div>
+                <a href="index.html" class="text-2xl font-black tracking-tight text-blue-600 uppercase">
+                    Tobi<span class="text-orange-500">toys</span>
+                </a>
 
-                <!-- Buscador Central -->
-                <div class="w-full sm:w-96 flex">
-                    <input type="text" id="search-input" placeholder="Buscar productos..." class="w-full px-4 py-2 border border-slate-300 rounded-l-md focus:outline-none focus:border-blue-500 text-sm">
-                    <button onclick="irCatalogo()" class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-r-md text-sm transition">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-
-                <!-- Botones Derecha (Ingresar / Admin / Carrito) -->
-                <div class="flex items-center space-x-4 text-sm font-semibold">
-                    <a href="admin.html" id="admin-nav-link" class="text-slate-600 hover:text-blue-600 hidden"><i class="fa-solid fa-gear mr-1"></i> Admin</a>
-                    <a href="login.html" class="text-slate-600 hover:text-blue-600 flex items-center space-x-1">
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        <span>INGRESAR</span>
+                <!-- Navegación -->
+                <nav class="flex items-center space-x-6 text-xs sm:text-sm font-semibold">
+                    <a href="admin.html" id="admin-nav-link" class="text-slate-600 hover:text-blue-600 transition hidden">
+                        <i class="fa-solid fa-gear mr-1"></i> Admin
                     </a>
-                    <a href="productos.html" class="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 rounded-md flex items-center space-x-2 transition">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span>VER CARRITO</span>
+                    <a href="login.html" class="text-slate-600 hover:text-blue-600 transition flex items-center space-x-1">
+                        <i class="fa-regular fa-user"></i>
+                        <span id="user-nav-name">MI CUENTA</span>
                     </a>
-                </div>
+                    <a href="productos.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition shadow-sm flex items-center space-x-1.5">
+                        <i class="fa-solid fa-store"></i>
+                        <span>VER CATÁLOGO</span>
+                    </a>
+                </nav>
 
             </div>
         </header>
 
-        <!-- Contenido Principal / Bienvenida -->
-        <main class="max-w-7xl mx-auto px-6 py-16">
-            <div class="text-center max-w-2xl mx-auto space-y-6">
-                <span class="bg-blue-50 text-blue-600 border border-blue-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Venta Mayorista y Minorista</span>
-                <h1 class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight">Bienvenidos a Tobitoys</h1>
-                <p class="text-slate-600 text-base font-medium">Encontrá el catálogo completo de artículos de librería, marroquinería y juguetes con la mejor atención y envíos a todo el país.</p>
+        <!-- Hero Section (Portada Principal) -->
+        <section class="bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-6 py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 
-                <div class="pt-4">
-                    <a href="productos.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-lg shadow-sm transition tracking-wide text-sm">
-                        Ir al Catálogo de Productos <i class="fa-solid fa-arrow-right ml-2"></i>
-                    </a>
+                <!-- Texto Principal -->
+                <div class="lg:col-span-7 space-y-5">
+                    <span class="inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        <i class="fa-solid fa-truck-fast mr-1.5"></i> Venta Mayorista a Comercios y Revendedores
+                    </span>
+                    
+                    <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight tracking-tight">
+                        Abastecé tu negocio con las mejores marcas de <span class="text-blue-600">librería</span>, <span class="text-orange-500">marroquinería</span> y juguetes.
+                    </h1>
+                    
+                    <p class="text-slate-600 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        Consultá nuestro catálogo actualizado con precios y stock en tiempo real. Armá tu pedido en minutos y envialo directo por WhatsApp o correo electrónico sin vueltas.
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <a href="productos.html" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3.5 rounded-lg text-sm uppercase tracking-wider transition shadow-md flex items-center space-x-2">
+                            <span>Explorar Catálogo</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="login.html" class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-6 py-3.5 rounded-lg text-sm uppercase tracking-wider transition border border-slate-200">
+                            Ingresar a Mi Cuenta
+                        </a>
+                    </div>
+
+                    <div class="pt-3 flex items-center space-x-6 text-xs text-slate-500 font-medium">
+                        <span class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> Stock actualizado</span>
+                        <span class="flex items-center"><i class="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i> Compra mínima: $100.000</span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Visual Destacada -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-3">
+                            <span class="text-xs font-bold uppercase text-slate-500">Rubros Destacados</span>
+                            <span class="text-xs font-bold text-blue-600">Temporada 2026</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="productos.html" class="bg-white border border-slate-200 hover:border-blue-400 rounded-xl p-4 transition group">
+                                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                </div>
+                                <h3 class="font-bold text-sm text-slate-900">Marroquinería</h3>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Mochilas, carros y cartucheras</p>
+                            </a>
+
+                            <a href="productos.html" class="bg-white border border-slate-200 hover:border-orange-400 rounded-xl p-4 transition group">
+                                <div class="w-10 h-10 bg-orange-50 text-orange-500 rounded-lg flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-pen-ruler"></i>
+                                </div>
+                                <h3 class="font-bold text-sm text-slate-900">Librería</h3>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Cuadernos, repuestos y escolar</p>
+                            </a>
+
+                            <a href="productos.html" class="bg-white border border-slate-200 hover:border-emerald-400 rounded-xl p-4 transition group">
+                                <div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-puzzle-piece"></i>
+                                </div>
+                                <h3 class="font-bold text-sm text-slate-900">Juguetería</h3>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Didácticos y línea infantil</p>
+                            </a>
+
+                            <a href="productos.html" class="bg-white border border-slate-200 hover:border-purple-400 rounded-xl p-4 transition group">
+                                <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-lg mb-3 group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-boxes-stacked"></i>
+                                </div>
+                                <h3 class="font-bold text-sm text-slate-900">Surtidos</h3>
+                                <p class="text-[11px] text-slate-500 mt-0.5">Novedades y ofertas por bulto</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Barra de Marcas -->
+        <section class="py-10 px-6 max-w-7xl mx-auto">
+            <p class="text-center text-xs font-bold uppercase tracking-widest text-slate-400 mb-6">
+                Trabajamos con marcas líderes del mercado
+            </p>
+            <div id="home-brands-list" class="flex flex-wrap justify-center gap-3 sm:gap-4">
+                <!-- Se carga dinámicamente desde localStorage o por defecto -->
+            </div>
+        </section>
+
+        <!-- Cómo Comprar (3 Pasos Simples) -->
+        <section class="max-w-7xl mx-auto px-6 pb-16">
+            <div class="bg-white border border-slate-200 rounded-2xl p-8 sm:p-10 shadow-sm">
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <h2 class="text-2xl font-black text-slate-900">¿Cómo hacer tu pedido mayorista?</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1">Un sistema ágil pensado para que no pierdas tiempo.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="border border-slate-100 bg-slate-50 rounded-xl p-6">
+                        <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-black text-xs flex items-center justify-center mb-4">1</div>
+                        <h3 class="font-bold text-sm text-slate-900 mb-1">Filtrá por marca o rubro</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Entrá al catálogo, elegí las cantidades exactas que necesitás de cada artículo y controlá el stock disponible al instante.</p>
+                    </div>
+
+                    <div class="border border-slate-100 bg-slate-50 rounded-xl p-6">
+                        <div class="w-8 h-8 rounded-full bg-orange-500 text-white font-black text-xs flex items-center justify-center mb-4">2</div>
+                        <h3 class="font-bold text-sm text-slate-900 mb-1">Revisá tu carrito</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">En el panel derecho vas viendo el subtotal sin IVA en tiempo real hasta superar el mínimo mayorista de $100.000.</p>
+                    </div>
+
+                    <div class="border border-slate-100 bg-slate-50 rounded-xl p-6">
+                        <div class="w-8 h-8 rounded-full bg-emerald-600 text-white font-black text-xs flex items-center justify-center mb-4">3</div>
+                        <h3 class="font-bold text-sm text-slate-900 mb-1">Envialo en un clic</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Mandá el detalle completo por WhatsApp o Email directo a nuestro equipo de ventas para coordinar el pago y entrega.</p>
+                    </div>
                 </div>
             </div>
-        </main>
+        </section>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-100 text-slate-500 py-6 text-center text-xs border-t border-slate-200 mt-20">
-        <p>&copy; 2026 Tobitoys. Todos los derechos reservados.</p>
+    <footer class="bg-white text-slate-500 py-8 px-6 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <div class="font-black text-base text-blue-600 uppercase">
+                Tobi<span class="text-orange-500">toys</span> <span class="font-normal text-slate-400 text-xs ml-2">Distribuidora Mayorista</span>
+            </div>
+            <div class="flex space-x-6 font-semibold text-slate-600">
+                <a href="productos.html" class="hover:text-blue-600 transition">Catálogo</a>
+                <a href="login.html" class="hover:text-blue-600 transition">Mi Cuenta</a>
+            </div>
+            <p class="text-slate-400">&copy; 2026 Tobitoys. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
-    <!-- Script -->
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            const AUTHORIZED_EMAIL = "rodrigo@tobitoys.com";
-            if (localStorage.getItem('admin_logged_email') === AUTHORIZED_EMAIL) {
+            const ADMIN_EMAIL = "admin@tobitoys.com";
+            const savedAdminEmail = localStorage.getItem('admin_logged_email');
+            if (savedAdminEmail && savedAdminEmail.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
                 document.getElementById('admin-nav-link').classList.remove('hidden');
             }
-        });
 
-        const searchInput = document.getElementById('search-input');
-        if (searchInput) {
-            searchInput.addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    window.location.href = 'productos.html';
-                }
+            const activeUser = JSON.parse(localStorage.getItem('tobitoys_client_user'));
+            if (activeUser) {
+                document.getElementById('user-nav-name').textContent = activeUser.name.toUpperCase();
+            }
+
+            // Cargar marcas dinámicas en la portada
+            const brands = JSON.parse(localStorage.getItem('tobitoys_brands')) || [
+                { id: 'chimola', name: 'Chimola' },
+                { id: 'arbrex', name: 'Arbrex' },
+                { id: 'argos', name: 'Argos' },
+                { id: 'surtidos', name: 'Artículos Surtidos' }
+            ];
+
+            const brandsContainer = document.getElementById('home-brands-list');
+            brands.forEach(brand => {
+                brandsContainer.innerHTML += `
+                    <a href="productos.html" class="bg-white border border-slate-200 hover:border-blue-500 hover:text-blue-600 text-slate-700 font-bold text-xs sm:text-sm px-5 py-2.5 rounded-lg shadow-sm transition">
+                        ${brand.name}
+                    </a>
+                `;
             });
-        }
-
-        function irCatalogo() {
-            window.location.href = 'productos.html';
-        }
+        });
     </script>
 </body>
 </html>
