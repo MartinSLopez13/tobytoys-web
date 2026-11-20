@@ -9,24 +9,24 @@
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+<body class="bg-amber-50/70 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
 
     <div>
         <!-- Header Superior -->
-        <header class="border-b border-slate-200 bg-white py-3 px-6 sticky top-0 z-50 shadow-sm">
+        <header class="border-b border-slate-800 bg-slate-900 text-white py-3 px-6 sticky top-0 z-50 shadow-sm">
             <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
                 
                 <!-- Logo Tobitoys -->
                 <div class="flex items-center">
-                    <a href="index.html" class="text-2xl font-black tracking-tight text-blue-600 uppercase">
-                        Tobi<span class="text-orange-500">toys</span>
+                    <a href="index.html" class="text-2xl font-black tracking-tight text-white uppercase">
+                        Tobi<span class="text-orange-400">toys</span>
                     </a>
                 </div>
 
                 <!-- Buscador Central -->
                 <div class="w-full sm:w-96 flex">
-                    <input type="text" id="search-input" oninput="filterProducts()" placeholder="Buscar..." class="w-full px-4 py-2 border border-slate-300 rounded-l-md focus:outline-none focus:border-blue-500 text-sm bg-white">
-                    <button class="bg-slate-700 hover:bg-slate-800 text-white px-4 py-2 rounded-r-md text-sm transition">
+                    <input type="text" id="search-input" oninput="filterProducts()" placeholder="Buscar..." class="w-full px-4 py-2 border border-slate-700 rounded-l-md focus:outline-none focus:border-orange-400 text-sm bg-slate-800 text-white placeholder-slate-400">
+                    <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-r-md text-sm transition">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
@@ -34,16 +34,16 @@
                 <!-- Botones Derecha -->
                 <div class="flex items-center space-x-6 text-sm font-semibold">
                     <!-- ENLACE ADMIN OCULTO POR DEFECTO -->
-                    <a href="admin.html" id="admin-nav-link" class="text-slate-600 hover:text-blue-600 hidden"><i class="fa-solid fa-gear mr-1"></i> Admin</a>
+                    <a href="admin.html" id="admin-nav-link" class="text-slate-300 hover:text-orange-400 hidden"><i class="fa-solid fa-gear mr-1"></i> Admin</a>
                     
-                    <a href="login.html" id="user-nav-link" class="text-slate-600 hover:text-blue-600 flex items-center space-x-1">
+                    <a href="login.html" id="user-nav-link" class="text-slate-300 hover:text-white flex items-center space-x-1">
                         <i class="fa-regular fa-user"></i>
                         <span id="user-nav-name">MI CUENTA</span>
                     </a>
-                    <a href="#" class="text-slate-800 font-bold flex items-center space-x-1">
-                        <i class="fa-solid fa-cart-shopping text-slate-600"></i>
+                    <a href="#" class="text-white font-bold flex items-center space-x-1">
+                        <i class="fa-solid fa-cart-shopping text-orange-400"></i>
                         <span>MI CARRITO</span>
-                        <span id="top-cart-count" class="bg-slate-800 text-white text-xs px-1.5 py-0.2 rounded-full font-bold ml-1">0</span>
+                        <span id="top-cart-count" class="bg-orange-500 text-white text-xs px-1.5 py-0.5 rounded-full font-bold ml-1">0</span>
                     </a>
                 </div>
 
@@ -55,8 +55,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 
                 <!-- 1. Columna Izquierda: Marcas y Subcategorías -->
-                <aside class="lg:col-span-3 bg-white border border-slate-200 rounded-lg p-4 h-fit shadow-sm">
-                    <h3 class="text-base font-bold text-slate-900 mb-3 pb-2 border-b border-slate-200">Marcas</h3>
+                <aside class="lg:col-span-3 bg-white border border-amber-200/90 rounded-xl p-4 h-fit shadow-sm">
+                    <h3 class="text-base font-bold text-slate-900 mb-3 pb-2 border-b border-amber-200/70">Marcas</h3>
                     <ul id="brands-sidebar" class="space-y-2 text-sm">
                         <!-- Dinámico -->
                     </ul>
@@ -71,20 +71,20 @@
 
                 <!-- 3. Columna Derecha: Carrito ("Mi compra") -->
                 <aside class="lg:col-span-3">
-                    <div class="bg-white border border-slate-200 rounded-lg p-4 sticky top-20 shadow-sm">
+                    <div class="bg-white border border-amber-200/90 rounded-xl p-4 sticky top-20 shadow-sm">
                         
-                        <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-200">
-                            <span class="font-bold text-xs text-slate-700 flex items-center">
-                                <i class="fa-solid fa-cart-shopping text-red-600 mr-1.5"></i> Mi compra
+                        <div class="flex justify-between items-center mb-3 pb-2 border-b border-amber-200/70">
+                            <span class="font-bold text-xs text-slate-800 flex items-center">
+                                <i class="fa-solid fa-cart-shopping text-orange-500 mr-1.5"></i> Mi compra
                             </span>
-                            <button onclick="finalizeOrder()" class="text-[11px] font-bold text-blue-600 hover:underline">Finalizar &gt;&gt;</button>
+                            <button onclick="finalizeOrder()" class="text-[11px] font-bold text-blue-700 hover:underline">Finalizar &gt;&gt;</button>
                         </div>
 
                         <div id="cart-items" class="space-y-4 max-h-72 overflow-y-auto mb-4 pr-1">
                             <p class="text-slate-400 text-center py-6 text-xs">No hay productos en el carrito.</p>
                         </div>
 
-                        <div class="border-t border-slate-200 pt-3 space-y-1 text-xs text-slate-600">
+                        <div class="border-t border-amber-200/70 pt-3 space-y-1 text-xs text-slate-600">
                             <div class="flex justify-between font-bold">
                                 <span>Total sin IVA</span>
                                 <span id="cart-total" class="text-slate-900">$0.00</span>
@@ -94,20 +94,20 @@
                             </div>
                         </div>
 
-                        <button onclick="finalizeOrder()" class="w-full mt-3 bg-amber-100 hover:bg-amber-200 text-amber-800 border border-amber-300 font-bold py-2 rounded text-xs transition shadow-sm">
+                        <button onclick="finalizeOrder()" class="w-full mt-3 bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-bold py-2 rounded-lg text-xs transition shadow-sm">
                             Finalizar &gt;&gt;
                         </button>
 
-                        <div class="mt-4 pt-3 border-t border-slate-200 space-y-2">
+                        <div class="mt-4 pt-3 border-t border-amber-200/70 space-y-2">
                             <div>
-                                <input type="text" id="client-name" class="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs outline-none focus:border-blue-500" placeholder="Nombre / Comercio">
+                                <input type="text" id="client-name" class="w-full px-2.5 py-1.5 border border-amber-200 bg-amber-50/40 rounded-lg text-xs outline-none focus:border-blue-500" placeholder="Nombre / Comercio">
                             </div>
                             <div class="flex gap-2">
-                                <button onclick="sendWhatsApp()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded font-bold text-xs flex items-center justify-center space-x-1 transition">
+                                <button onclick="sendWhatsApp()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg font-bold text-xs flex items-center justify-center space-x-1 transition shadow-sm">
                                     <i class="fa-brands fa-whatsapp text-sm"></i>
                                     <span>WHATSAPP</span>
                                 </button>
-                                <button onclick="sendEmail()" class="flex-1 bg-sky-600 hover:bg-sky-700 text-white py-2 rounded font-bold text-xs flex items-center justify-center space-x-1 transition">
+                                <button onclick="sendEmail()" class="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-lg font-bold text-xs flex items-center justify-center space-x-1 transition shadow-sm">
                                     <i class="fa-solid fa-envelope text-sm"></i>
                                     <span>EMAIL</span>
                                 </button>
@@ -120,7 +120,7 @@
         </main>
     </div>
 
-    <footer class="bg-white text-slate-400 py-6 text-center text-xs border-t border-slate-200 mt-20">
+    <footer class="bg-slate-900 text-slate-300 py-6 text-center text-xs border-t border-slate-800 mt-20">
         <p>&copy; 2026 Tobitoys. Todos los derechos reservados.</p>
     </footer>
 
@@ -174,7 +174,7 @@
 
         function renderSidebarBrands() {
             const sidebar = document.getElementById('brands-sidebar');
-            sidebar.innerHTML = `<li><button onclick="setFilter('todos', 'todos')" id="btn-brand-todos" class="brand-btn w-full text-left py-1.5 px-2 rounded text-blue-600 font-bold bg-blue-50 transition">Sugeridos / Todos</button></li>`;
+            sidebar.innerHTML = `<li><button onclick="setFilter('todos', 'todos')" id="btn-brand-todos" class="brand-btn w-full text-left py-1.5 px-2.5 rounded-lg text-blue-700 font-bold bg-amber-100/80 transition">Sugeridos / Todos</button></li>`;
 
             brands.forEach(brand => {
                 const brandProducts = products.filter(p => p.brand === brand.id);
@@ -182,14 +182,14 @@
 
                 let subcatHtml = '';
                 subcats.forEach(sub => {
-                    subcatHtml += `<li><button onclick="setFilter('${brand.id}', '${sub}')" id="btn-sub-${brand.id}-${sub}" class="sub-btn w-full text-left py-1 px-2 text-xs rounded text-slate-500 hover:bg-slate-100 transition pl-4">↳ ${sub}</button></li>`;
+                    subcatHtml += `<li><button onclick="setFilter('${brand.id}', '${sub}')" id="btn-sub-${brand.id}-${sub}" class="sub-btn w-full text-left py-1 px-2 text-xs rounded-lg text-slate-600 hover:bg-amber-100/60 transition pl-4">↳ ${sub}</button></li>`;
                 });
 
                 sidebar.innerHTML += `
                     <li class="pt-2">
-                        <button onclick="setFilter('${brand.id}', 'todos')" id="btn-brand-${brand.id}" class="brand-btn w-full text-left py-1.5 px-2 rounded font-bold text-slate-700 hover:bg-slate-50 transition flex justify-between items-center">
+                        <button onclick="setFilter('${brand.id}', 'todos')" id="btn-brand-${brand.id}" class="brand-btn w-full text-left py-1.5 px-2.5 rounded-lg font-bold text-slate-800 hover:bg-amber-50 transition flex justify-between items-center">
                             <span>${brand.name}</span>
-                            ${subcats.length > 0 ? '<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>' : ''}
+                            ${subcats.length > 0 ? '<i class="fa-solid fa-chevron-right text-[10px] text-amber-600"></i>' : ''}
                         </button>
                         ${subcats.length > 0 ? `<ul class="space-y-1 mt-1">${subcatHtml}</ul>` : ''}
                     </li>
@@ -214,31 +214,31 @@
                 const brandName = brandObj ? brandObj.name : product.brand;
 
                 grid.innerHTML += `
-                    <div class="bg-white border border-slate-200 rounded-lg p-3 flex flex-col justify-between shadow-sm hover:shadow transition relative">
+                    <div class="bg-white border border-amber-200/90 hover:border-blue-400 rounded-xl p-3 flex flex-col justify-between shadow-sm hover:shadow transition relative">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <span class="text-[10px] text-slate-400 font-semibold uppercase">${brandName} / ${product.subcat}</span>
-                                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${isOutOfStock ? 'bg-red-50 text-red-600' : 'bg-slate-100 text-slate-600'}">
+                                <span class="text-[10px] text-slate-500 font-semibold uppercase">${brandName} / ${product.subcat}</span>
+                                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${isOutOfStock ? 'bg-red-50 text-red-600' : 'bg-amber-100/80 text-amber-900'}">
                                     Stk: ${stockVal}
                                 </span>
                             </div>
-                            <div class="w-full h-32 bg-slate-50 border border-slate-100 rounded flex items-center justify-center p-1 mb-2">
+                            <div class="w-full h-32 bg-amber-50/50 border border-amber-100 rounded-lg flex items-center justify-center p-1 mb-2">
                                 <img src="${product.image}" alt="${product.name}" class="w-full h-full object-contain">
                             </div>
-                            <h4 class="font-bold text-xs text-slate-800 line-clamp-2">${product.name}</h4>
+                            <h4 class="font-bold text-xs text-slate-900 line-clamp-2">${product.name}</h4>
                             <p class="text-[11px] text-slate-500 mt-0.5">Cod. ${product.code || 'TOBI-' + product.id}</p>
                         </div>
 
-                        <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+                        <div class="mt-3 pt-2 border-t border-amber-100 flex items-center justify-between">
                             <span class="font-black text-sm text-slate-900">$${priceVal.toLocaleString()}</span>
                             
                             <div class="flex items-center space-x-1.5">
-                                <div class="flex items-center border border-slate-300 rounded bg-slate-50 px-1">
-                                    <button onclick="adjustCardQty(${product.id}, -1)" class="w-5 h-5 text-slate-700 font-bold flex items-center justify-center text-xs hover:bg-slate-200 rounded">-</button>
+                                <div class="flex items-center border border-amber-200 rounded-lg bg-amber-50/60 px-1">
+                                    <button onclick="adjustCardQty(${product.id}, -1)" class="w-5 h-5 text-slate-700 font-bold flex items-center justify-center text-xs hover:bg-amber-200/70 rounded">-</button>
                                     <input type="number" id="input-qty-${product.id}" min="1" max="${stockVal}" value="1" class="w-8 text-center text-xs font-bold bg-transparent outline-none">
-                                    <button onclick="adjustCardQty(${product.id}, 1)" class="w-5 h-5 text-slate-700 font-bold flex items-center justify-center text-xs hover:bg-slate-200 rounded">+</button>
+                                    <button onclick="adjustCardQty(${product.id}, 1)" class="w-5 h-5 text-slate-700 font-bold flex items-center justify-center text-xs hover:bg-amber-200/70 rounded">+</button>
                                 </div>
-                                <button onclick="addCustomQtyToCart(${product.id})" ${isOutOfStock ? 'disabled' : ''} class="${isOutOfStock ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-600 text-white'} px-2.5 py-1.5 rounded text-xs font-bold transition flex items-center space-x-1 shadow-sm" title="Agregar al carrito">
+                                <button onclick="addCustomQtyToCart(${product.id})" ${isOutOfStock ? 'disabled' : ''} class="${isOutOfStock ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-orange-500 hover:bg-orange-600 text-white'} px-2.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1 shadow-sm" title="Agregar al carrito">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     <span>+</span>
                                 </button>
@@ -340,7 +340,7 @@
             itemsContainer.innerHTML = '';
             cart.forEach(item => {
                 itemsContainer.innerHTML += `
-                    <div class="border-b border-slate-100 pb-3 text-xs">
+                    <div class="border-b border-amber-100 pb-3 text-xs">
                         <div class="flex justify-between items-start font-bold text-slate-900">
                             <span class="w-36 truncate">${item.name}</span>
                             <span>$${(item.price * item.quantity).toLocaleString()}</span>
@@ -348,10 +348,10 @@
                         <div class="text-[11px] text-slate-500 mt-0.5">Precio unitario: $${item.price.toLocaleString()}</div>
                         <div class="flex justify-between items-center mt-2">
                             <span class="text-[11px] font-semibold text-slate-700">${item.quantity} Unidad${item.quantity > 1 ? 'es' : ''}</span>
-                            <div class="flex items-center space-x-1 border border-slate-200 rounded px-1 bg-slate-50">
-                                <button onclick="changeQty(${item.id}, -1)" class="w-5 h-5 text-slate-700 font-bold flex items-center justify-center hover:bg-slate-200 rounded">-</button>
+                            <div class="flex items-center space-x-1 border border-amber-200 rounded-lg px-1 bg-amber-50/60">
+                                <button onclick="changeQty(${item.id}, -1)" class="w-5 h-5 text-slate-700 font-bold flex items-center justify-center hover:bg-amber-200/70 rounded">-</button>
                                 <span class="text-xs font-bold w-5 text-center">${item.quantity}</span>
-                                <button onclick="changeQty(${item.id}, 1)" class="w-5 h-5 text-slate-700 font-bold flex items-center justify-center hover:bg-slate-200 rounded">+</button>
+                                <button onclick="changeQty(${item.id}, 1)" class="w-5 h-5 text-slate-700 font-bold flex items-center justify-center hover:bg-amber-200/70 rounded">+</button>
                             </div>
                         </div>
                     </div>
